@@ -6,6 +6,7 @@ import Navbar from "./components/navbar.component";
 import ViewUserProfile from "./components/view-user-profile.component";
 import GauchadasList from "./components/gauchadas-list.component";
 import CreateGauchada from "./components/create-gauchada.component";
+import CreateUser from "./components/create-user.component"
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/" exact component={GauchadasList} />
                 <Route path="/view/:id" component={ViewUserProfile} />
                 <Route path="/create" component={CreateGauchada} />
+                <Route path="/users/signUp" component={CreateUser} />
                 {/*<Route path="" component={} />
                 <Route path="" component={} />
                 <Route path="" component={} />*/}

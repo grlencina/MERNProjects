@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
+
+var moment = require('moment');
 
 export default class CreateGauchada extends Component {
 
@@ -9,7 +12,7 @@ export default class CreateGauchada extends Component {
 
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
-        this.onChangeCreationDate = this.onChangeCreationDate.bind(this);
+        //this.onChangeCreationDate = this.onChangeCreationDate.bind(this);
         this.onChangeExpirationDate = this.onChangeExpirationDate.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
@@ -18,7 +21,7 @@ export default class CreateGauchada extends Component {
             description: '',
             creationDate: new Date(),
             expirationDate: new Date(),
-            owner: '',
+            owner: 'Site',
             resolver:''
         }
     }
@@ -36,11 +39,13 @@ export default class CreateGauchada extends Component {
 
     }
 
+    /*
     onChangeCreationDate(date) {
         this.setState({
             creationDate: date
         });
     }
+    */
 
     onChangeExpirationDate(date) {
         this.setState({
@@ -59,6 +64,9 @@ export default class CreateGauchada extends Component {
             owner: this.state.owner,
             resolver: this.state.resolver
         }
+
+        axios.post('http://localhost:5000/gauchadas/add', gauchada)
+            .then(res => console.log(res.data));
 
         console.log(gauchada);
 
@@ -90,15 +98,6 @@ export default class CreateGauchada extends Component {
                             onChange={this.onChangeDescription}
                         />
                     </div>
-                    <div className="form-group" disabled>
-                        <label>Creation Date: </label>
-                        <div>
-                            <DatePicker
-                                selected={this.state.creationDate}
-                                onChange={this.onCreationDate}
-                            />
-                        </div>
-                    </div>
                     <div className="form-group">
                         <label>Expiration Date: </label>
                         <div>
@@ -106,6 +105,12 @@ export default class CreateGauchada extends Component {
                                 selected={this.state.expirationDate}
                                 onChange={this.onChangeExpirationDate}
                             />
+                        </div>
+                    </div>
+                    <div className="form-group" disabled>
+                        <label>Creation Date: </label>
+                        <div>
+                            {moment(this.state.creationDate).format('MM-DD-YYYY')}
                         </div>
                     </div>
 
