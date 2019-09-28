@@ -13,13 +13,13 @@ export default class Navbar extends Component {
                             <Link to="/" className="nav-link">Gauchadas dashboard</Link>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/create" className="nav-link">Create Gauchada</Link>
+                            <Link to="/gauchadas/create" className="nav-link">Create Gauchada</Link>
                         </li>
                         <li className="navbar-item">
                             <Link to="/users/signUp" className="nav-link">Sign up</Link>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/view/:id" className="nav-link">My profile</Link>
+                            <Link to="/users/view/:id" className="nav-link">My profile</Link>
                         </li>
                     </ul>
                 </div>

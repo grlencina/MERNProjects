@@ -7,11 +7,11 @@ var moment = require('moment');
 const Gauchada = props => (
     <tr>
         <td>{props.gauchada.title}</td>
-        <td>{props.gauchada.description}</td>
         <td>{moment(props.gauchada.creationDate).format('MM-DD-YYYY')}</td>
         <td>{moment(props.gauchada.expirationDate).format('MM-DD-YYYY')}</td>
+        <td>{props.gauchada.owner}</td>
         <td>
-            <Link to={"/edit/" + props.gauchada._id}>edit</Link> | <a href="#" onClick={() => { props.deleteGauchada(props.gauchada._id) }}>delete</a>
+            <Link to={"gauchadas/view?id=" + props.gauchada._id}>view</Link> | <Link to={"/edit/" + props.gauchada._id}>edit</Link> | <a href="#" onClick={() => { props.deleteGauchada(props.gauchada._id) }}>delete</a>
         </td>
     </tr>
 )
@@ -44,6 +44,10 @@ export default class GauchadasList extends Component {
         })
     }
 
+    viewGauchada(id) {
+        window.location('http://localhost:3000/gauchadas/view/' + id);
+    }
+
     gauchadaList() {
         return this.state.gauchadas.map(currentgauchada => {
             return <Gauchada gauchada={currentgauchada} deleteGauchada={this.deleteGauchada} key={currentgauchada._id} />;
@@ -58,7 +62,6 @@ export default class GauchadasList extends Component {
                     <thead className="thead-light">
                         <tr>
                             <th>Title</th>
-                            <th>Description</th>
                             <th>Creation Date</th>
                             <th>Expiration Date</th>
                             <th>Owner</th>

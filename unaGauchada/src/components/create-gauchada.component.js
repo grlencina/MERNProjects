@@ -22,7 +22,7 @@ export default class CreateGauchada extends Component {
             creationDate: new Date(),
             expirationDate: new Date(),
             owner: 'Site',
-            resolver:''
+            resolver:' '
         }
     }
 
