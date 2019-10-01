@@ -22,7 +22,6 @@ export default class ViewUserProfile extends Component {
 
     componentDidMount() {
         let id= (this.props.location.search).substring((this.props.location.search).indexOf('=')+1, (this.props.location.search).length);
-        console.log(id);
         
         axios.get('http://localhost:5000/gauchadas/' + id)
             .then(response => {

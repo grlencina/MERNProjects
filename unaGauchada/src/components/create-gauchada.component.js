@@ -73,7 +73,16 @@ export default class CreateGauchada extends Component {
         //window.location = '/';
     }
 
-
+    stateSetter(data) {
+        this.setState({
+            title: data.title,
+            description: data.description,
+            creationDate: data.creationDate,
+            expirationDate: data.expirationDate,
+            owner: data.owner,
+            resolver: ' '
+        })
+    }
 
     render() {
         return (
