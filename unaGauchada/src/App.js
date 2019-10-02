@@ -9,6 +9,7 @@ import CreateGauchada from "./components/create-gauchada.component";
 import CreateUser from "./components/create-user.component";
 import ViewGauchada from "./components/view-gauchada.component";
 import EditGauchada from "./components/edit-gauchada.component";
+import LogInUser from "./components/log-in-user.component";
 
 
 function App() {
@@ -19,10 +20,11 @@ function App() {
                 <br/>
                 <Route path="/" exact component={GauchadasList} />
                 <Route path="/users/view/:id" component={ViewUserProfile} />
-                <Route path="/users/signUp" component={CreateUser} />
+                <Route path="/users/signup" component={CreateUser} />
+                <Route path="/users/login" component={LogInUser} />
                 <Route path="/gauchadas/create" component={CreateGauchada} />
-                <Route path="/gauchadas/view" component={ViewGauchada} />
-                <Route path="/gauchadas/edit" component={EditGauchada} />
+                <Route path="/gauchadas/view/:id" component={ViewGauchada} />
+                <Route path="/gauchadas/edit/:id" component={EditGauchada} />
                 {/*<Route path="" component={} />
                 <Route path="" component={} />
                 <Route path="" component={} />*/}

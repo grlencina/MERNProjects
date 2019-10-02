@@ -3,7 +3,7 @@ import axios from 'axios';
 
 var moment = require('moment');
 
-export default class ViewUserProfile extends Component {
+export default class ViewGauchada extends Component {
 
     constructor(props) {
         super(props);
@@ -21,9 +21,8 @@ export default class ViewUserProfile extends Component {
     }
 
     componentDidMount() {
-        let id= (this.props.location.search).substring((this.props.location.search).indexOf('=')+1, (this.props.location.search).length);
         
-        axios.get('http://localhost:5000/gauchadas/' + id)
+        axios.get('http://localhost:5000/gauchadas/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     title: response.data.title,
@@ -33,12 +32,12 @@ export default class ViewUserProfile extends Component {
                     owner: response.data.owner,
                     resolver: response.data.resolver
                 })
-               console.log(response.data.title  );
+                console.log(this.state);
             })
             .catch((error) => {
                 console.log(error);
             })
-            
+        
     }
 
 

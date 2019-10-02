@@ -16,7 +16,10 @@ export default class Navbar extends Component {
                             <Link to="/gauchadas/create" className="nav-link">Create Gauchada</Link>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/users/signUp" className="nav-link">Sign up</Link>
+                            <Link to="/users/signup" className="nav-link">Sign up</Link>
+                        </li>
+                        <li className="navbar-item">
+                            <Link to="/users/login" className="nav-link">Log in</Link>
                         </li>
                         <li className="navbar-item">
                             <Link to="/users/view/:id" className="nav-link">My profile</Link>

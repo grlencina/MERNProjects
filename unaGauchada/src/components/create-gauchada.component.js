@@ -12,7 +12,6 @@ export default class CreateGauchada extends Component {
 
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
-        //this.onChangeCreationDate = this.onChangeCreationDate.bind(this);
         this.onChangeExpirationDate = this.onChangeExpirationDate.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
@@ -39,14 +38,6 @@ export default class CreateGauchada extends Component {
 
     }
 
-    /*
-    onChangeCreationDate(date) {
-        this.setState({
-            creationDate: date
-        });
-    }
-    */
-
     onChangeExpirationDate(date) {
         this.setState({
             expirationDate: date
@@ -71,17 +62,6 @@ export default class CreateGauchada extends Component {
         console.log(gauchada);
 
         //window.location = '/';
-    }
-
-    stateSetter(data) {
-        this.setState({
-            title: data.title,
-            description: data.description,
-            creationDate: data.creationDate,
-            expirationDate: data.expirationDate,
-            owner: data.owner,
-            resolver: ' '
-        })
     }
 
     render() {
@@ -128,10 +108,6 @@ export default class CreateGauchada extends Component {
                     </div>
 
                 </form>
-
-
-
-
 
             </div>
         )

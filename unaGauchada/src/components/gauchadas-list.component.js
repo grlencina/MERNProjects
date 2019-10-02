@@ -11,7 +11,7 @@ const Gauchada = props => (
         <td>{moment(props.gauchada.expirationDate).format('MM-DD-YYYY')}</td>
         <td>{props.gauchada.owner}</td>
         <td>
-            <Link to={"gauchadas/view?id=" + props.gauchada._id}>view</Link> | <Link to={"gauchadas/edit?id" + props.gauchada._id}>edit</Link> | <a href="#" onClick={() => { props.deleteGauchada(props.gauchada._id) }}>delete</a>
+            <Link to={"gauchadas/view/" + props.gauchada._id}>view</Link> | <Link to={"gauchadas/edit/" + props.gauchada._id}>edit</Link> | <a href="#" onClick={() => { props.deleteGauchada(props.gauchada._id) }}>delete</a>
         </td>
     </tr>
 )

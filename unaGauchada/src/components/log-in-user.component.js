@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class CreateUser extends Component {
+export default class LogInUser extends Component {
 
 
     constructor(props) {
@@ -33,20 +33,17 @@ export default class CreateUser extends Component {
         e.preventDefault();
 
         const user = {
-            username: this.state.username,
-            password: this.state.password
+            username: this.state.username
         }
 
-        axios.post('http://localhost:5000/users/signUp', user)
+        axios.post('http://localhost:5000/users/login', user)
             .then(res => console.log(res.data));
-
-        console.log(user);
     }
 
     render() {
         return (
             <div>
-                <h3> Create a new user </h3>
+                <h3> Log in </h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label> Username: </label>
@@ -65,7 +62,7 @@ export default class CreateUser extends Component {
                         />
 
                         <div className="form-group">
-                            <input type="submit" value="Sign me up!" className="btn btn-primary" />
+                            <input type="submit" value="Log me in!" className="btn btn-primary" />
                         </div>
                     </div>
                 </form>
