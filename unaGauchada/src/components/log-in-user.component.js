@@ -33,11 +33,14 @@ export default class LogInUser extends Component {
         e.preventDefault();
 
         const user = {
-            username: this.state.username
+            username: this.state.username,
+            password: this.state.password
         }
 
         axios.post('http://localhost:5000/users/login', user)
             .then(res => console.log(res.data));
+
+
     }
 
     render() {

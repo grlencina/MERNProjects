@@ -18,7 +18,13 @@ router.route('/signUp').post((req, res) => {
 });
 
 router.route('/login').post((req, res) => {
-    User.findOne({ password: req.body.password }, function (err, res) { console.log(res)});
-});
+    User.findOne({ username: req.body.username, password: req.body.password })
+        .then(user =>
+            res.json({
+                id: user._id,
+                username: user.username
+            })
+        );
+})
 
 module.exports = router;
