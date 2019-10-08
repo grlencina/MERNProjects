@@ -21,6 +21,7 @@ const gauchadaSchema = new Schema({
     creationDate: { type: Date, required: true },
     expirationDate: { type: Date, required: true },
     owner: { type: String, required: true },
+    owner_id: { type: String },
     resolver: { type: String, required: true }
 }, {
         timestamps: true,

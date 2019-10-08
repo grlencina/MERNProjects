@@ -29,6 +29,13 @@ export default class LogInUser extends Component {
         });
     }
 
+    setUserData(data) {
+        localStorage.setItem('token', data._id);
+        localStorage.setItem('username', data.username);
+        console.log(data);
+        window.location ="/";
+    }
+
     onSubmit(e) {
         e.preventDefault();
 
@@ -38,9 +45,15 @@ export default class LogInUser extends Component {
         }
 
         axios.post('http://localhost:5000/users/login', user)
-            .then(res => console.log(res.data));
-
-
+            .then(res => {
+                if(res.data.success) {
+                    localStorage.setItem('token', res.data.token);
+                    localStorage.setItem('username', user.username);
+                    window.location = "/";          
+                } else {
+                    console.log(res.data.message);
+                }
+            });
     }
 
     render() {

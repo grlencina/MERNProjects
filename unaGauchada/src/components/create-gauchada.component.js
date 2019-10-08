@@ -20,7 +20,8 @@ export default class CreateGauchada extends Component {
             description: '',
             creationDate: new Date(),
             expirationDate: new Date(),
-            owner: 'Site',
+            owner: '',
+            owner_id:'',
             resolver:' '
         }
     }
@@ -47,21 +48,22 @@ export default class CreateGauchada extends Component {
     onSubmit(e) {
         e.preventDefault();
 
+        let id = axios.get('http://localhost:5000/users/name/'+ localStorage.getItem('username'));
+
         const gauchada = {
             title: this.state.title,
             description: this.state.description,
             creationDate: this.state.creationDate,
             expirationDate: this.state.expirationDate,
-            owner: this.state.owner,
+            owner: localStorage.getItem('username'),
+            owner_id: id,
             resolver: this.state.resolver
         }
 
         axios.post('http://localhost:5000/gauchadas/add', gauchada)
             .then(res => console.log(res.data));
 
-        console.log(gauchada);
-
-        //window.location = '/';
+        window.location = '/';
     }
 
     render() {

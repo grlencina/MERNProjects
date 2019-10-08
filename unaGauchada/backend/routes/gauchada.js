@@ -49,6 +49,7 @@ router.route('/update/:id').post((req, res) => {
             gauchada.creationDate = Date.parse(req.body.creationDate);
             gauchada.expirationDate = Date.parse(req.body.expirationDate);
             gauchada.owner = req.body.owner;
+            gauchada.owner_id = gauchada.owner_id;
             gauchada.resolver = req.body.resolver;
 
             gauchada.save()
