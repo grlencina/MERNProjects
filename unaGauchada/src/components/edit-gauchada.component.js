@@ -27,18 +27,21 @@ export default class EditGauchada extends Component {
     }
 
     componentDidMount() {
-   
         axios.get('http://localhost:5000/gauchadas/' + this.props.match.params.id)
             .then(response => {
-                this.setState({
-                    id: response.data.id,
-                    title: response.data.title,
-                    description: response.data.description,
-                    creationDate: new Date(response.data.creationDate),
-                    expirationDate: new Date(response.data.expirationDate),
-                    owner: response.data.owner,
-                    resolver: response.data.resolver
-                })
+                if(localStorage.getItem('username')!== response.data.owner){
+                    window.location= '/';
+                } else {               
+                    this.setState({
+                        id: response.data.id,
+                        title: response.data.title,
+                        description: response.data.description,
+                        creationDate: new Date(response.data.creationDate),
+                        expirationDate: new Date(response.data.expirationDate),
+                        owner: response.data.owner,
+                        resolver: response.data.resolver
+                    })
+                }
             })
             .catch((error) => {
                 console.log(error);

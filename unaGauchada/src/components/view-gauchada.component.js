@@ -21,7 +21,6 @@ export default class ViewGauchada extends Component {
     }
 
     componentDidMount() {
-        
         axios.get('http://localhost:5000/gauchadas/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
@@ -37,12 +36,18 @@ export default class ViewGauchada extends Component {
             .catch((error) => {
                 console.log(error);
             })
+    }
+
+    onSubmit(e){
         
     }
 
-
     render() {
-        return (
+        let applyVerified;
+        if(this.state.owner !== localStorage.getItem('username')){
+            applyVerified = <div className="form-group"><input type="submit" value="Apply" className="btn btn-primary" /></div>
+        }        
+        return [
             <div>
                 <h3> {this.state.title} </h3>
                 <form onSubmit={this.onSubmit}>
@@ -67,19 +72,9 @@ export default class ViewGauchada extends Component {
                         <div>
                             {moment(this.state.expirationDate).format('MM-DD-YYYY')}
                         </div>
-                    </div>
-
-                    <div className="form-group">
-                        <input type="submit" value="Apply" className="btn btn-primary" />
-                    </div>
-
+                    </div> {applyVerified}
                 </form>
-
-
-
-
-
             </div>
-        )
+        ]
     }
 }

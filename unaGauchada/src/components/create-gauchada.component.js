@@ -26,6 +26,12 @@ export default class CreateGauchada extends Component {
         }
     }
 
+    componentDidMount() {
+        if(localStorage.getItem('token')== null){
+            window.location= '/';
+        }
+    }
+
     onChangeTitle(e) {
         this.setState({
             title: e.target.value

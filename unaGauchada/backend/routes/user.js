@@ -8,6 +8,24 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/verify/:token').get((req, res) => {
+    User.find({token:req.params.token, activeSession: true})
+        .then(sess => {
+            if(sess.length==1) {
+                return res.send({
+                    success: true,
+                    message: 'Session active found.'
+                })
+            } else {
+                return res.send({
+                    success:false,
+                    message: 'Error: session error.'
+                })
+            }
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/user/:username').get((req, res) => {
     Gauchada.find({username: req.params.username})
         .then(user => res.json(user._id))

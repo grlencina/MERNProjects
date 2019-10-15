@@ -4,17 +4,25 @@ import axios from 'axios';
 
 var moment = require('moment');
 
-const Gauchada = props => (
+const Gauchada = props => {
+    let actions;
+    if(localStorage.getItem('token')!=null) {
+        if(props.gauchada.owner===localStorage.getItem('username')){
+            actions = <td><Link to={"gauchadas/view/" + props.gauchada._id}>view</Link> | <Link to={"gauchadas/edit/" + props.gauchada._id}>edit</Link> | <a href="#" onClick={() => { props.deleteGauchada(props.gauchada._id) }}>delete</a></td>
+        } else {
+            actions = <td><Link to={"gauchadas/view/" + props.gauchada._id}>view</Link> </td>
+        }
+    }
+    return [
     <tr>
         <td>{props.gauchada.title}</td>
         <td>{moment(props.gauchada.creationDate).format('MM-DD-YYYY')}</td>
         <td>{moment(props.gauchada.expirationDate).format('MM-DD-YYYY')}</td>
-        <td>{props.gauchada.owner}</td>
-        <td>
-            <Link to={"gauchadas/view/" + props.gauchada._id}>view</Link> | <Link to={"gauchadas/edit/" + props.gauchada._id}>edit</Link> | <a href="#" onClick={() => { props.deleteGauchada(props.gauchada._id) }}>delete</a>
-        </td>
+        <td>{props.gauchada.owner}</td> {actions}
     </tr>
-)
+    ]
+}
+
 
 export default class GauchadasList extends Component {
     constructor(props) {
@@ -54,8 +62,18 @@ export default class GauchadasList extends Component {
         })
     }
 
+    verifyToken(){
+        return localStorage.getItem('token')!=null
+    }
+ 
     render() {
-        return (
+        let actions
+        if(this.verifyToken()) {
+            actions =  <th>Actions</th>
+        } else {
+            actions =''
+        }
+        return [
             <div>
                 <h3>Open Gauchadas</h3>
                 <table className="table">
@@ -65,7 +83,7 @@ export default class GauchadasList extends Component {
                             <th>Creation Date</th>
                             <th>Expiration Date</th>
                             <th>Owner</th>
-                            <th>Actions</th>
+                            {actions}
                         </tr>
                     </thead>
                     <tbody>
@@ -73,6 +91,6 @@ export default class GauchadasList extends Component {
                     </tbody>
                 </table>
             </div>
-        )
+        ]
     }
 }
